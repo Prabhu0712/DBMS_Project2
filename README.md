@@ -1,76 +1,41 @@
-# Delicious Recipe Manager
+# Recipe Management System
 
-A full-stack web application for managing and sharing vegetarian recipes. Built with Node.js, Express, MySQL, and vanilla JavaScript.
-
-## Features
-
-- 🍽️ Recipe Management
-  - Add, view, edit, and delete recipes
-  - Categorize recipes (Indian, Italian, etc.)
-  - Filter recipes by category and type
-  - Detailed recipe view with ingredients
-
-- 🥬 Ingredient Management
-  - Add and manage ingredients
-  - Track ingredient types and amounts
-  - Link ingredients to recipes
-
-- 🎨 Modern UI
-  - Responsive design
-  - Beautiful recipe cards
-  - Intuitive forms
-  - Category filtering
-
-## Prerequisites
-
-Before you begin, ensure you have the following installed:
-
-1. **Node.js** (v14 or higher)
-   - Download from [nodejs.org](https://nodejs.org/)
-
-2. **MySQL** (v8.0 or higher)
-   - Download from [mysql.com](https://dev.mysql.com/downloads/installer/)
-   - During installation:
-     - Set root password as: `prabhu0712`
-     - Or update the password in `backend/db.js` and `setup_database.js`
-
-3. **Git** (for version control)
-   - Download from [git-scm.com](https://git-scm.com/downloads)
+A full-stack web application for managing cooking recipes with a MySQL database backend.
 
 ## Project Structure
-
 ```
-DBMS_Project2/
-├── backend/              # Backend server code
-│   ├── node_modules/     # Backend dependencies
-│   ├── server.js         # Express server
-│   └── db.js            # Database configuration
-├── frontend/             # Frontend code
-│   ├── node_modules/     # Frontend dependencies
-│   ├── index.html        # Main HTML file
-│   ├── script.js         # Frontend JavaScript
-│   ├── style.css         # Custom styles
-│   └── serve.js          # Frontend server
-├── node_modules/         # Root dependencies
-├── add_ingredients.js    # Script to add ingredients
-├── add_recipes.js        # Script to add recipes
-├── setup_database.js     # Database setup script
-└── package.json          # Project configuration
+├── backend/           # Backend server (Node.js)
+├── frontend/          # Frontend application
+├── database.sql       # Database schema
+└── setup_database.js  # Database initialization script
 ```
 
-## Installation
+## Prerequisites
+- Node.js (v14 or higher)
+- MySQL Server (v8.0 or higher)
+- Git
 
-1. **Clone the repository**
+## Setup Instructions
+
+1. **Clone the Repository**
    ```bash
-   git clone <repository-url>
-   cd DBMS_Project2
+   git clone <your-repository-url>
+   cd <repository-name>
    ```
 
-2. **Install dependencies**
-   ```bash
-   # Install root dependencies
-   npm install
+2. **Install MySQL**
+   - Download and install MySQL from [MySQL website](https://dev.mysql.com/downloads/installer/)
+   - During installation, set root password to: `prabhu0712`
+   - Make sure MySQL service is running
 
+3. **Setup Database**
+   ```bash
+   # Create and initialize the database
+   node setup_database.js
+   ```
+
+4. **Install Dependencies**
+   ```bash
    # Install backend dependencies
    cd backend
    npm install
@@ -80,90 +45,51 @@ DBMS_Project2/
    npm install
    ```
 
-3. **Set up the database**
+5. **Start the Application**
    ```bash
-   # Run from project root
-   node setup_database.js
-   ```
-
-4. **Add initial data**
-   ```bash
-   # Add ingredients
-   node add_ingredients.js
-
-   # Add recipes
-   node add_recipes.js
-   ```
-
-## Running the Application
-
-1. **Start the backend server**
-   ```bash
+   # Start backend server (from project root)
    cd backend
    node server.js
-   ```
-   - Server runs on http://localhost:5000
 
-2. **Start the frontend server**
-   ```bash
+   # In a new terminal, start frontend server
    cd frontend
    node serve.js
    ```
-   - Frontend runs on http://localhost:8080
 
-3. **Access the application**
-   - Open http://localhost:8080 in your browser
+   Or use the provided batch file:
+   ```bash
+   # Windows
+   .\start_all.bat
+   ```
+
+## Accessing the Application
+- Frontend: http://localhost:8080
+- Backend API: http://localhost:5000
+
+## Database Configuration
+The application uses the following database configuration:
+- Database Name: `cooking_recipe_db`
+- Username: `root`
+- Password: `prabhu0712`
+- Host: `localhost`
+
+## Features
+- Recipe management
+- Ingredient tracking
+- Category organization
+- User authentication
+- Recipe search and filtering
 
 ## API Endpoints
-
-- `GET /api/recipes` - Get all recipes
-- `GET /api/recipes/:id` - Get a specific recipe
-- `POST /api/recipes` - Add a new recipe
-- `DELETE /api/recipes/:id` - Delete a recipe
-- `GET /api/ingredients` - Get all ingredients
-- `POST /api/ingredients` - Add a new ingredient
-- `GET /api/categories` - Get all categories
-
-## Dependencies
-
-### Backend
-- express
-- mysql2
-- cors
-- body-parser
-
-### Frontend
-- Bootstrap 5
-- Bootstrap Icons
-- Google Fonts
-
-## Troubleshooting
-
-1. **Port already in use**
-   - Kill existing Node.js processes:
-     ```bash
-     # On Windows
-     Get-Process -Name node | Stop-Process -Force
-     ```
-
-2. **Database connection issues**
-   - Verify MySQL is running
-   - Check database credentials in `backend/db.js`
-   - Run `node test_db_connection.js` to test connection
-
-3. **CORS errors**
-   - Ensure backend is running on port 5000
-   - Ensure frontend is running on port 8080
-   - Check CORS configuration in `backend/server.js`
+- GET /api/recipes - Get all recipes
+- POST /api/recipes - Create new recipe
+- GET /api/recipes/:id - Get specific recipe
+- PUT /api/recipes/:id - Update recipe
+- DELETE /api/recipes/:id - Delete recipe
 
 ## Contributing
-
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details. 
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request 

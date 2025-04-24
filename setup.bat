@@ -13,11 +13,11 @@ if %errorlevel% neq 0 (
 REM Check if MySQL is installed
 where mysql >nul 2>&1
 if %errorlevel% neq 0 (
-    echo MySQL is not installed. Installing MySQL...
-    REM Download and install MySQL
-    powershell -Command "Invoke-WebRequest -Uri 'https://dev.mysql.com/get/Downloads/MySQLInstaller/mysql-installer-community-8.0.33.0.msi' -OutFile 'mysql-installer.msi'"
-    start /wait msiexec /i mysql-installer.msi /qn
-    del mysql-installer.msi
+    echo Error: MySQL is not installed
+    echo Please install MySQL from https://dev.mysql.com/downloads/installer/
+    echo During installation, set root password to: prabhu0712
+    pause
+    exit /b 1
 )
 
 REM Install backend dependencies
@@ -38,14 +38,6 @@ if %errorlevel% neq 0 (
     echo Error installing frontend dependencies
     pause
     exit /b 1
-)
-
-REM Start MySQL service
-echo Starting MySQL service...
-net start mysql
-if %errorlevel% neq 0 (
-    echo Warning: Could not start MySQL service
-    echo Please make sure MySQL is installed and running
 )
 
 REM Setup database
